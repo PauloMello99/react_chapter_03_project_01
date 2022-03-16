@@ -1,14 +1,12 @@
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+
 import { api } from "../../services/api";
 import { getStripeJS } from "../../services/stripe-js";
+
 import styles from "./styles.module.scss";
 
-interface SubscribeButtonProps {
-  priceId: string;
-}
-
-function SubscribeButton({ priceId }: SubscribeButtonProps) {
+function SubscribeButton() {
   const { status, data } = useSession();
   const router = useRouter();
 

@@ -11,7 +11,7 @@ import styles from "./styles.module.scss";
 interface Post {
   slug: string;
   title: string;
-  except: string;
+  excerpt: string;
   updatedAt: string;
 }
 
@@ -32,7 +32,7 @@ export default function Posts({ posts }: PostsProps) {
             <a key={post.slug} href={`/posts/${post.slug}`}>
               <time>{post.updatedAt}</time>
               <strong>{post.title}</strong>
-              <p>{post.except}</p>
+              <p>{post.excerpt}</p>
             </a>
           ))}
         </div>
@@ -53,7 +53,7 @@ export const getStaticProps: GetStaticProps<PostsProps> = async () => {
     return {
       slug: post.uid,
       title: RichText.asText(post.data.title),
-      except:
+      excerpt:
         post.data.content.find((content) => content.type === "paragraph")
           ?.text ?? "",
       updatedAt: new Date(post.last_publication_date).toLocaleDateString(

@@ -7,8 +7,6 @@ import { stripe } from "../services/stripe";
 
 import SubscribeButton from "../components/SubscribeButton";
 
-import AvatarImg from "../../public/images/avatar.svg";
-
 import styles from "./home.module.scss";
 
 interface Product {
@@ -41,9 +39,14 @@ export default function Home({ product }: HomeProps) {
             Get access to all the publications <br />
             <span>for {formattedPrice} month</span>
           </p>
-          <SubscribeButton priceId={product.priceId} />
+          <SubscribeButton />
         </section>
-        <Image src={AvatarImg} alt="Girl Coding" />
+        <Image
+          src="/images/avatar.svg"
+          alt="Girl Coding"
+          width="100%"
+          height="100%"
+        />
       </main>
     </Fragment>
   );

@@ -19,7 +19,7 @@ function SignInButton() {
       onClick={handleSignOut}
     >
       <FaGithub color="#04d361" />
-      {data.session?.user?.name}
+      {data?.user?.name}
       <FiX color="#737380" className={styles.closeIcon} />
     </button>
   ) : (
