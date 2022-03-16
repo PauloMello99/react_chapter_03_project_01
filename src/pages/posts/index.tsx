@@ -44,7 +44,7 @@ export default function Posts({ posts }: PostsProps) {
 export const getStaticProps: GetStaticProps<PostsProps> = async () => {
   const prismic = getPrismicClient();
 
-  const response = await prismic.query(
+  const response: any = await prismic.query(
     [Prismic.Predicates.at("document.type", "post")],
     { fetch: ["post.title", "post.content"], pageSize: 100 }
   );

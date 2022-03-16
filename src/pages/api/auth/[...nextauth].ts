@@ -35,13 +35,19 @@ export default NextAuth({
         );
 
         return {
-          session,
+          expires: new Date().toISOString(),
           token,
           user,
           activeSubscription: userActiveSubscription,
         };
       } catch (error) {
-        return { session, token, user, activeSubscription: null };
+        return {
+          session,
+          token,
+          user,
+          activeSubscription: null,
+          expires: null,
+        };
       }
     },
     async signIn({ user }) {

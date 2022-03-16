@@ -21,17 +21,17 @@ export default async function subscribe(
     return res.status(405).end("Method not allowed");
   }
 
-  const { session } = await getSession({ req });
+  const { user: sessionUser } = await getSession({ req });
 
   const user = await fauna.query<User>(
-    q.Get(q.Match(q.Index("user_by_email"), q.Casefold(session.user.email)))
+    q.Get(q.Match(q.Index("user_by_email"), q.Casefold(sessionUser.email)))
   );
 
   let customerId = user.data.stripe_customer_id;
 
   if (!customerId) {
     const stripeCustomer = await stripe.customers.create({
-      email: session.user.email,
+      email: sessionUser.email,
     });
 
     await fauna.query(
